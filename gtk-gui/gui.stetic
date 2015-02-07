@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<stetic-interface>
+  <configuration>
+    <images-root-path>..</images-root-path>
+    <target-gtk-version>2.12</target-gtk-version>
+  </configuration>
+  <import>
+    <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <widget-library name="../bin/Debug/ApacheLogViewer.exe" internal="true" />
+  </import>
+  <widget class="Gtk.Window" id="MainWindow" design-size="1012 300">
+    <action-group name="Default">
+      <action id="refreshAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Refresh</property>
+        <property name="ShortLabel" translatable="yes">Refresh</property>
+        <property name="StockId">gtk-refresh</property>
+      </action>
+      <action id="refreshAction1">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Refresh</property>
+        <property name="ShortLabel" translatable="yes">Refresh</property>
+        <property name="StockId">gtk-refresh</property>
+        <signal name="Activated" handler="OnRefreshAction1Activated" />
+      </action>
+      <action id="btnShowDate">
+        <property name="Type">Toggle</property>
+        <property name="Label" translatable="yes">Show date</property>
+        <property name="ShortLabel" translatable="yes">Show date</property>
+        <property name="StockId">gtk-jump-to</property>
+        <property name="DrawAsRadio">False</property>
+        <property name="Active">False</property>
+        <signal name="Toggled" handler="OnBtnShowDateToggled" />
+      </action>
+      <action id="btnShowCategory">
+        <property name="Type">Toggle</property>
+        <property name="Label" translatable="yes">Show Category</property>
+        <property name="ShortLabel" translatable="yes">Show Category</property>
+        <property name="StockId">gtk-dnd</property>
+        <property name="DrawAsRadio">False</property>
+        <property name="Active">False</property>
+        <signal name="Toggled" handler="OnBtnShowDateToggled" />
+      </action>
+      <action id="btnShowPID">
+        <property name="Type">Toggle</property>
+        <property name="Label" translatable="yes">Show PID</property>
+        <property name="ShortLabel" translatable="yes">Show PID</property>
+        <property name="StockId">gtk-execute</property>
+        <property name="DrawAsRadio">False</property>
+        <property name="Active">False</property>
+        <signal name="Toggled" handler="OnBtnShowDateToggled" />
+      </action>
+      <action id="btnShowIP">
+        <property name="Type">Toggle</property>
+        <property name="Label" translatable="yes">Show IP</property>
+        <property name="ShortLabel" translatable="yes">Show IP</property>
+        <property name="StockId">gtk-network</property>
+        <property name="DrawAsRadio">False</property>
+        <property name="Active">False</property>
+        <signal name="Toggled" handler="OnBtnShowDateToggled" />
+      </action>
+      <action id="btnShowWarnings">
+        <property name="Type">Toggle</property>
+        <property name="Label" translatable="yes">Show Warnings</property>
+        <property name="ShortLabel" translatable="yes">Show Warnings</property>
+        <property name="StockId">gtk-dialog-warning</property>
+        <property name="DrawAsRadio">False</property>
+        <property name="Active">False</property>
+        <signal name="Toggled" handler="OnBtnShowDateToggled" />
+      </action>
+      <action id="btnShowNotices">
+        <property name="Type">Toggle</property>
+        <property name="Label" translatable="yes">Show Notices</property>
+        <property name="ShortLabel" translatable="yes">Show Notices</property>
+        <property name="StockId">gtk-dialog-info</property>
+        <property name="DrawAsRadio">False</property>
+        <property name="Active">False</property>
+        <signal name="Toggled" handler="OnBtnShowDateToggled" />
+      </action>
+      <action id="btnClearLog">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Clear Log (needs root)</property>
+        <property name="ShortLabel" translatable="yes">Clear Log (needs root)</property>
+        <property name="StockId">gtk-delete</property>
+        <signal name="Activated" handler="OnBtnClearLogActivated" />
+      </action>
+      <action id="btnShowStackStrace">
+        <property name="Type">Toggle</property>
+        <property name="Label" translatable="yes">Show StackTrace</property>
+        <property name="ShortLabel" translatable="yes">Show StackTrace</property>
+        <property name="StockId">gtk-indent</property>
+        <property name="DrawAsRadio">False</property>
+        <property name="Active">False</property>
+        <signal name="Toggled" handler="OnBtnShowDateToggled" />
+      </action>
+    </action-group>
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">Apache log viewer</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <signal name="DeleteEvent" handler="OnDeleteEvent" />
+    <child>
+      <widget class="Gtk.VBox" id="vbox2">
+        <property name="MemberName" />
+        <property name="Spacing">6</property>
+        <child>
+          <widget class="Gtk.Toolbar" id="toolbar">
+            <property name="MemberName" />
+            <property name="ShowArrow">False</property>
+            <node name="toolbar" type="Toolbar">
+              <node type="Toolitem" action="refreshAction1" />
+              <node type="Separator" />
+              <node type="Toolitem" action="btnShowDate" />
+              <node type="Toolitem" action="btnShowCategory" />
+              <node type="Toolitem" action="btnShowPID" />
+              <node type="Toolitem" action="btnShowIP" />
+              <node type="Separator" />
+              <node type="Toolitem" action="btnShowWarnings" />
+              <node type="Toolitem" action="btnShowNotices" />
+              <node type="Toolitem" action="btnShowStackStrace" />
+              <node type="Separator" />
+              <node type="Toolitem" action="btnClearLog" />
+            </node>
+          </widget>
+          <packing>
+            <property name="Position">0</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
+            <property name="MemberName" />
+            <property name="ShadowType">In</property>
+            <child>
+              <widget class="Gtk.TextView" id="textview">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="ShowScrollbars">True</property>
+                <property name="Text" translatable="yes" />
+                <signal name="KeyPressEvent" handler="OnTextviewKeyPressEvent" />
+              </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="AutoSize">True</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+</stetic-interface>
