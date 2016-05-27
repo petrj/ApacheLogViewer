@@ -5,13 +5,13 @@ using System.IO;
 using Gtk;
 using ApacheLogViewer;
 
-
 public partial class MainWindow: Gtk.Window
 {	
 	private string _logPath = "/var/log/apache2/error.log";							    
 	private LogReader _logReader;
 	private bool _toggleEnabled = false;
-
+	private bool _refreshing = false;
+	public FileSystemWatcher Watcher { get; set; }
 
 	public MainWindow (): base (Gtk.WindowType.Toplevel)
 	{
@@ -31,26 +31,37 @@ public partial class MainWindow: Gtk.Window
 
 		_toggleEnabled = true;
 		OnRefreshAction1Activated(this,null);
+		
+			Watcher = new FileSystemWatcher("/var/log/apache2");
+			Watcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.LastAccess | NotifyFilters.DirectoryName | NotifyFilters.FileName;
+			Watcher.Changed += new FileSystemEventHandler(OnConfigDirChange);
+			Watcher.Deleted += new FileSystemEventHandler (OnConfigDirChange);
+			Watcher.Created += new FileSystemEventHandler (OnConfigDirChange);
+			Watcher.Renamed += new RenamedEventHandler (OnConfigDirChange);
+			Watcher.EnableRaisingEvents = true;
+	}
+	
+	protected void OnConfigDirChange(object sender,FileSystemEventArgs args)
+	{
+		try
+		{	
+			if (_refreshing) 
+				return;
+			
+			Gtk.Application.Invoke(delegate {
+        		OnRefreshAction1Activated(this,null);
+    		});    
+			
+			
+		} catch (Exception ex)
+		{
+			Console.WriteLine(ex.ToString());			
+		}
 	}
 
 	private void GoToEnd()
 	{
-		//textview.Buffer.MoveMark = textview.Buffer.EndIter;
-		//textview.Buffer.PlaceCursor(textview.Buffer.EndIter);
-		//textview.ScrollToIter(textview.Buffer.EndIter,0,false,0d,0d);
-		//textview.ScrollToMark(textview.Buffer.MoveMark,0,false,0,0);
-		//textview.SetScrollAdjustments(new Adjustment(
-		//textview.ScrollToIter(textview.Buffer.EndIter, 0, false, 0, 0);
-		//var adj = GtkScrolledWindow.Vadjustment;
-		//adj.Value = adj.Upper;
 		textview.ScrollToIter(textview.Buffer.EndIter,0,false,0,0);
-
-		//while (Gtk.Application.EventsPending())
-			//Gtk.Application.RunIteration();
-
-		// running:
-		//var adj = GtkScrolledWindow.Vadjustment;
-		//adj.Value = adj.Upper;
 	}
 	
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -61,12 +72,15 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnRefreshAction1Activated (object sender, EventArgs e)
 	{
+		_refreshing = true;
+	
 		_logReader.ReLoad();
 
 		textview.Buffer.Text = _logReader.ToString();
 
-		//Reload();
 		GoToEnd();
+		
+		_refreshing = false;
 	}	
 
 	protected void OnTextviewKeyPressEvent (object o, KeyPressEventArgs args)
@@ -77,16 +91,11 @@ public partial class MainWindow: Gtk.Window
 		}
 	}
 
-	protected void OnBtnShowDateChanged (object o, ChangedArgs args)
-	{
-
-	}		
-	
 	protected void OnBtnShowDateToggled (object sender, EventArgs e)
 	{		
 		if (_logReader == null || !_toggleEnabled)
-			return;
-
+			return;			
+			
 		_logReader.ShowDate = btnShowDate.Active;
 		_logReader.ShowCategory = btnShowCategory.Active;
 		_logReader.ShowPID = btnShowPID.Active;
@@ -119,7 +128,6 @@ public partial class MainWindow: Gtk.Window
 		sReader.Close(); 
 		
 		return res;
-
 	}
 
 	public static void InfoDialog(string message,MessageType msgType = MessageType.Info )
@@ -134,18 +142,14 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnBtnClearLogActivated (object sender, EventArgs e)
 	{
-		var output = ExecuteAndReturnOutput("/scripts/clear_apache_log.sh");
-
-			if (output.Contains("failed"))
-			{
-				InfoDialog("Error while clearing log:" + Environment.NewLine+ Environment.NewLine+ output,MessageType.Error);
-			} 
+		var output = ExecuteAndReturnOutput("gksudo","\"sh -c '/etc/init.d/apache2 stop;rm -f /var/log/apache2/error.log;/etc/init.d/apache2 start';\"");
+		
+		if (output != null)
+		{
+			InfoDialog(output,MessageType.Info);
+		} 
 
 		OnRefreshAction1Activated(this,null);
 	}
-
-
-
-
 
 }

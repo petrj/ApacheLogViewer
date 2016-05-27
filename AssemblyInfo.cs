@@ -5,11 +5,11 @@ using System.Runtime.CompilerServices;
 // Change them to the values specific to your project.
 
 [assembly: AssemblyTitle("ApacheLogViewer")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Apache Log Viewer")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("kirk")]
+[assembly: AssemblyCompany("PetrJ")]
+[assembly: AssemblyProduct("pache Log Viewer")]
+[assembly: AssemblyCopyright("no")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

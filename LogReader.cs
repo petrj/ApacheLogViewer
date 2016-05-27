@@ -31,12 +31,12 @@ namespace ApacheLogViewer
 			ShowPID = false;
 			ShowIP = false;
 
-			ShowPHPWarnings = true;
-			ShowPHPNotices = true;
-			ShowPHPStackTraces = true;
+			ShowPHPWarnings = false;
+			ShowPHPNotices = false;
+			ShowPHPStackTraces = false;
 
-			ReLoad();
-		}
+			ReLoad();	
+		}		
 
 		public string FullLog
 		{
@@ -46,14 +46,17 @@ namespace ApacheLogViewer
 		public void ReLoad()
 		{
 			_rawLog = null;
-
-			// Open the file into a StreamReader
-			using(var sr = File.OpenText(_logFileName))
+			
+			if (File.Exists(_logFileName))
 			{
-				_rawLog = sr.ReadToEnd();
+				// Open the file into a StreamReader
+				using(var sr = File.OpenText(_logFileName))
+				{
+					_rawLog = sr.ReadToEnd();
+				}
+	
+				Parse();
 			}
-
-			Parse();
 		}
 
 		private void Parse()
@@ -104,6 +107,10 @@ namespace ApacheLogViewer
 
 		public override string ToString ()
 		{
+			if ((Entries == null) || (Entries.Count == 0))
+				return null;
+			
+		
 			var res = new StringBuilder();
 
 			foreach (var entry in Entries)
@@ -127,4 +134,3 @@ namespace ApacheLogViewer
 		}
 	}
 }
-

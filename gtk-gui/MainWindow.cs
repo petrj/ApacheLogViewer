@@ -11,7 +11,7 @@ public partial class MainWindow
 	private global::Gtk.ToggleAction btnShowIP;
 	private global::Gtk.ToggleAction btnShowWarnings;
 	private global::Gtk.ToggleAction btnShowNotices;
-	private global::Gtk.Action btnClearLog;
+	private global::Gtk.Action deleteAction;
 	private global::Gtk.ToggleAction btnShowStackStrace;
 	private global::Gtk.VBox vbox2;
 	private global::Gtk.Toolbar toolbar;
@@ -48,9 +48,9 @@ public partial class MainWindow
 		this.btnShowNotices = new global::Gtk.ToggleAction ("btnShowNotices", global::Mono.Unix.Catalog.GetString ("Show Notices"), null, "gtk-dialog-info");
 		this.btnShowNotices.ShortLabel = global::Mono.Unix.Catalog.GetString ("Show Notices");
 		w1.Add (this.btnShowNotices, null);
-		this.btnClearLog = new global::Gtk.Action ("btnClearLog", global::Mono.Unix.Catalog.GetString ("Clear Log (needs root)"), null, "gtk-delete");
-		this.btnClearLog.ShortLabel = global::Mono.Unix.Catalog.GetString ("Clear Log (needs root)");
-		w1.Add (this.btnClearLog, null);
+		this.deleteAction = new global::Gtk.Action ("deleteAction", global::Mono.Unix.Catalog.GetString ("Clear Log (gksudo)"), null, "gtk-delete");
+		this.deleteAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Clear Log (gksudo)");
+		w1.Add (this.deleteAction, null);
 		this.btnShowStackStrace = new global::Gtk.ToggleAction ("btnShowStackStrace", global::Mono.Unix.Catalog.GetString ("Show StackTrace"), null, "gtk-indent");
 		this.btnShowStackStrace.ShortLabel = global::Mono.Unix.Catalog.GetString ("Show StackTrace");
 		w1.Add (this.btnShowStackStrace, null);
@@ -64,7 +64,7 @@ public partial class MainWindow
 		this.vbox2.Name = "vbox2";
 		this.vbox2.Spacing = 6;
 		// Container child vbox2.Gtk.Box+BoxChild
-		this.UIManager.AddUiFromString ("<ui><toolbar name='toolbar'><toolitem name='refreshAction1' action='refreshAction1'/><separator/><toolitem name='btnShowDate' action='btnShowDate'/><toolitem name='btnShowCategory' action='btnShowCategory'/><toolitem name='btnShowPID' action='btnShowPID'/><toolitem name='btnShowIP' action='btnShowIP'/><separator/><toolitem name='btnShowWarnings' action='btnShowWarnings'/><toolitem name='btnShowNotices' action='btnShowNotices'/><toolitem name='btnShowStackStrace' action='btnShowStackStrace'/><separator/><toolitem name='btnClearLog' action='btnClearLog'/></toolbar></ui>");
+		this.UIManager.AddUiFromString ("<ui><toolbar name='toolbar'><toolitem name='refreshAction1' action='refreshAction1'/><separator/><toolitem name='btnShowDate' action='btnShowDate'/><toolitem name='btnShowCategory' action='btnShowCategory'/><toolitem name='btnShowPID' action='btnShowPID'/><toolitem name='btnShowIP' action='btnShowIP'/><separator/><toolitem name='btnShowWarnings' action='btnShowWarnings'/><toolitem name='btnShowNotices' action='btnShowNotices'/><toolitem name='btnShowStackStrace' action='btnShowStackStrace'/><separator/><toolitem name='deleteAction' action='deleteAction'/></toolbar></ui>");
 		this.toolbar = ((global::Gtk.Toolbar)(this.UIManager.GetWidget ("/toolbar")));
 		this.toolbar.Name = "toolbar";
 		this.toolbar.ShowArrow = false;
@@ -89,7 +89,7 @@ public partial class MainWindow
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 1012;
+		this.DefaultWidth = 1024;
 		this.DefaultHeight = 300;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
@@ -100,7 +100,7 @@ public partial class MainWindow
 		this.btnShowIP.Toggled += new global::System.EventHandler (this.OnBtnShowDateToggled);
 		this.btnShowWarnings.Toggled += new global::System.EventHandler (this.OnBtnShowDateToggled);
 		this.btnShowNotices.Toggled += new global::System.EventHandler (this.OnBtnShowDateToggled);
-		this.btnClearLog.Activated += new global::System.EventHandler (this.OnBtnClearLogActivated);
+		this.deleteAction.Activated += new global::System.EventHandler (this.OnBtnClearLogActivated);
 		this.btnShowStackStrace.Toggled += new global::System.EventHandler (this.OnBtnShowDateToggled);
 		this.textview.KeyPressEvent += new global::Gtk.KeyPressEventHandler (this.OnTextviewKeyPressEvent);
 	}

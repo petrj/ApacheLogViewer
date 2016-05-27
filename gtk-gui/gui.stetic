@@ -8,7 +8,7 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/ApacheLogViewer.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="1012 300">
+  <widget class="Gtk.Window" id="MainWindow" design-size="1024 300">
     <action-group name="Default">
       <action id="refreshAction">
         <property name="Type">Action</property>
@@ -77,10 +77,10 @@
         <property name="Active">False</property>
         <signal name="Toggled" handler="OnBtnShowDateToggled" />
       </action>
-      <action id="btnClearLog">
+      <action id="deleteAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Clear Log (needs root)</property>
-        <property name="ShortLabel" translatable="yes">Clear Log (needs root)</property>
+        <property name="Label" translatable="yes">Clear Log (gksudo)</property>
+        <property name="ShortLabel" translatable="yes">Clear Log (gksudo)</property>
         <property name="StockId">gtk-delete</property>
         <signal name="Activated" handler="OnBtnClearLogActivated" />
       </action>
@@ -118,7 +118,7 @@
               <node type="Toolitem" action="btnShowNotices" />
               <node type="Toolitem" action="btnShowStackStrace" />
               <node type="Separator" />
-              <node type="Toolitem" action="btnClearLog" />
+              <node type="Toolitem" action="deleteAction" />
             </node>
           </widget>
           <packing>
