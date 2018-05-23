@@ -32,13 +32,25 @@ public partial class MainWindow: Gtk.Window
 		_toggleEnabled = true;
 		OnRefreshAction1Activated(this,null);
 		
-			Watcher = new FileSystemWatcher("/var/log/apache2");
+			Watcher = new FileSystemWatcher(System.IO.Path.GetDirectoryName(_logPath));
 			Watcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.LastAccess | NotifyFilters.DirectoryName | NotifyFilters.FileName;
 			Watcher.Changed += new FileSystemEventHandler(OnConfigDirChange);
 			Watcher.Deleted += new FileSystemEventHandler (OnConfigDirChange);
 			Watcher.Created += new FileSystemEventHandler (OnConfigDirChange);
 			Watcher.Renamed += new RenamedEventHandler (OnConfigDirChange);
 			Watcher.EnableRaisingEvents = true;
+	}
+
+	public string LogPath
+	{
+		get 
+		{
+			return _logPath;
+		}
+		set 
+		{
+			_logPath = value;
+		}
 	}
 	
 	protected void OnConfigDirChange(object sender,FileSystemEventArgs args)

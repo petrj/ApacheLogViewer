@@ -21,6 +21,7 @@
         <property name="Label" translatable="yes">Refresh</property>
         <property name="ShortLabel" translatable="yes">Refresh</property>
         <property name="StockId">gtk-refresh</property>
+        <property name="Tooltip" translatable="yes">Refresh</property>
         <signal name="Activated" handler="OnRefreshAction1Activated" />
       </action>
       <action id="btnShowDate">
@@ -28,6 +29,7 @@
         <property name="Label" translatable="yes">Show date</property>
         <property name="ShortLabel" translatable="yes">Show date</property>
         <property name="StockId">gtk-jump-to</property>
+        <property name="Tooltip" translatable="yes">Show date</property>
         <property name="DrawAsRadio">False</property>
         <property name="Active">False</property>
         <signal name="Toggled" handler="OnBtnShowDateToggled" />
@@ -37,6 +39,7 @@
         <property name="Label" translatable="yes">Show Category</property>
         <property name="ShortLabel" translatable="yes">Show Category</property>
         <property name="StockId">gtk-dnd</property>
+        <property name="Tooltip" translatable="yes">Show category</property>
         <property name="DrawAsRadio">False</property>
         <property name="Active">False</property>
         <signal name="Toggled" handler="OnBtnShowDateToggled" />
@@ -46,6 +49,7 @@
         <property name="Label" translatable="yes">Show PID</property>
         <property name="ShortLabel" translatable="yes">Show PID</property>
         <property name="StockId">gtk-execute</property>
+        <property name="Tooltip" translatable="yes">Show PID</property>
         <property name="DrawAsRadio">False</property>
         <property name="Active">False</property>
         <signal name="Toggled" handler="OnBtnShowDateToggled" />
@@ -55,6 +59,7 @@
         <property name="Label" translatable="yes">Show IP</property>
         <property name="ShortLabel" translatable="yes">Show IP</property>
         <property name="StockId">gtk-network</property>
+        <property name="Tooltip" translatable="yes">Show IP</property>
         <property name="DrawAsRadio">False</property>
         <property name="Active">False</property>
         <signal name="Toggled" handler="OnBtnShowDateToggled" />
@@ -64,6 +69,7 @@
         <property name="Label" translatable="yes">Show Warnings</property>
         <property name="ShortLabel" translatable="yes">Show Warnings</property>
         <property name="StockId">gtk-dialog-warning</property>
+        <property name="Tooltip" translatable="yes">Show warnings</property>
         <property name="DrawAsRadio">False</property>
         <property name="Active">False</property>
         <signal name="Toggled" handler="OnBtnShowDateToggled" />
@@ -73,6 +79,7 @@
         <property name="Label" translatable="yes">Show Notices</property>
         <property name="ShortLabel" translatable="yes">Show Notices</property>
         <property name="StockId">gtk-dialog-info</property>
+        <property name="Tooltip" translatable="yes">Show notices</property>
         <property name="DrawAsRadio">False</property>
         <property name="Active">False</property>
         <signal name="Toggled" handler="OnBtnShowDateToggled" />
@@ -82,6 +89,7 @@
         <property name="Label" translatable="yes">Clear Log (gksudo)</property>
         <property name="ShortLabel" translatable="yes">Clear Log (gksudo)</property>
         <property name="StockId">gtk-delete</property>
+        <property name="Tooltip" translatable="yes">Clear log (gksudo]</property>
         <signal name="Activated" handler="OnBtnClearLogActivated" />
       </action>
       <action id="btnShowStackStrace">
@@ -89,6 +97,7 @@
         <property name="Label" translatable="yes">Show StackTrace</property>
         <property name="ShortLabel" translatable="yes">Show StackTrace</property>
         <property name="StockId">gtk-indent</property>
+        <property name="Tooltip" translatable="yes">Show Stacktrace</property>
         <property name="DrawAsRadio">False</property>
         <property name="Active">False</property>
         <signal name="Toggled" handler="OnBtnShowDateToggled" />
