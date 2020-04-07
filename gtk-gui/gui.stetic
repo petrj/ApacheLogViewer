@@ -2,10 +2,8 @@
 <stetic-interface>
   <configuration>
     <images-root-path>..</images-root-path>
-    <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
-    <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/ApacheLogViewer.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="1024 300">
@@ -27,7 +25,7 @@
       <action id="btnShowDate">
         <property name="Type">Toggle</property>
         <property name="Label" translatable="yes">Show date</property>
-        <property name="ShortLabel" translatable="yes">Show date</property>
+        <property name="ShortLabel" translatable="yes">Date</property>
         <property name="StockId">gtk-jump-to</property>
         <property name="Tooltip" translatable="yes">Show date</property>
         <property name="DrawAsRadio">False</property>
@@ -37,7 +35,7 @@
       <action id="btnShowCategory">
         <property name="Type">Toggle</property>
         <property name="Label" translatable="yes">Show Category</property>
-        <property name="ShortLabel" translatable="yes">Show Category</property>
+        <property name="ShortLabel" translatable="yes">Category</property>
         <property name="StockId">gtk-dnd</property>
         <property name="Tooltip" translatable="yes">Show category</property>
         <property name="DrawAsRadio">False</property>
@@ -47,7 +45,7 @@
       <action id="btnShowPID">
         <property name="Type">Toggle</property>
         <property name="Label" translatable="yes">Show PID</property>
-        <property name="ShortLabel" translatable="yes">Show PID</property>
+        <property name="ShortLabel" translatable="yes">PID</property>
         <property name="StockId">gtk-execute</property>
         <property name="Tooltip" translatable="yes">Show PID</property>
         <property name="DrawAsRadio">False</property>
@@ -57,7 +55,7 @@
       <action id="btnShowIP">
         <property name="Type">Toggle</property>
         <property name="Label" translatable="yes">Show IP</property>
-        <property name="ShortLabel" translatable="yes">Show IP</property>
+        <property name="ShortLabel" translatable="yes">IP</property>
         <property name="StockId">gtk-network</property>
         <property name="Tooltip" translatable="yes">Show IP</property>
         <property name="DrawAsRadio">False</property>
@@ -67,7 +65,7 @@
       <action id="btnShowWarnings">
         <property name="Type">Toggle</property>
         <property name="Label" translatable="yes">Show Warnings</property>
-        <property name="ShortLabel" translatable="yes">Show Warnings</property>
+        <property name="ShortLabel" translatable="yes">Warnings</property>
         <property name="StockId">gtk-dialog-warning</property>
         <property name="Tooltip" translatable="yes">Show warnings</property>
         <property name="DrawAsRadio">False</property>
@@ -77,7 +75,7 @@
       <action id="btnShowNotices">
         <property name="Type">Toggle</property>
         <property name="Label" translatable="yes">Show Notices</property>
-        <property name="ShortLabel" translatable="yes">Show Notices</property>
+        <property name="ShortLabel" translatable="yes">Notices</property>
         <property name="StockId">gtk-dialog-info</property>
         <property name="Tooltip" translatable="yes">Show notices</property>
         <property name="DrawAsRadio">False</property>
@@ -86,16 +84,16 @@
       </action>
       <action id="deleteAction">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">Clear Log (gksudo)</property>
-        <property name="ShortLabel" translatable="yes">Clear Log (gksudo)</property>
+        <property name="Label" translatable="yes">Clear Log (root)</property>
+        <property name="ShortLabel" translatable="yes">Clear Log (root)</property>
         <property name="StockId">gtk-delete</property>
-        <property name="Tooltip" translatable="yes">Clear log (gksudo]</property>
+        <property name="Tooltip" translatable="yes">Clear log (root)</property>
         <signal name="Activated" handler="OnBtnClearLogActivated" />
       </action>
-      <action id="btnShowStackStrace">
+      <action id="btnShowStackTrace">
         <property name="Type">Toggle</property>
         <property name="Label" translatable="yes">Show StackTrace</property>
-        <property name="ShortLabel" translatable="yes">Show StackTrace</property>
+        <property name="ShortLabel" translatable="yes">StackTrace</property>
         <property name="StockId">gtk-indent</property>
         <property name="Tooltip" translatable="yes">Show Stacktrace</property>
         <property name="DrawAsRadio">False</property>
@@ -115,6 +113,7 @@
           <widget class="Gtk.Toolbar" id="toolbar">
             <property name="MemberName" />
             <property name="ShowArrow">False</property>
+            <property name="ButtonStyle">Both</property>
             <node name="toolbar" type="Toolbar">
               <node type="Toolitem" action="refreshAction1" />
               <node type="Separator" />
@@ -125,7 +124,8 @@
               <node type="Separator" />
               <node type="Toolitem" action="btnShowWarnings" />
               <node type="Toolitem" action="btnShowNotices" />
-              <node type="Toolitem" action="btnShowStackStrace" />
+              <node type="Toolitem" action="btnShowStackTrace" />
+              <node type="Separator" />
               <node type="Separator" />
               <node type="Toolitem" action="deleteAction" />
             </node>

@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+# Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApacheLogViewer", "ApacheLogViewer.csproj", "{570085E1-A7DD-4A0A-9CFC-00115EE567CA}"
 EndProject
 Global
@@ -13,8 +13,5 @@ Global
 		{570085E1-A7DD-4A0A-9CFC-00115EE567CA}.Debug|x86.Build.0 = Debug|x86
 		{570085E1-A7DD-4A0A-9CFC-00115EE567CA}.Release|x86.ActiveCfg = Release|x86
 		{570085E1-A7DD-4A0A-9CFC-00115EE567CA}.Release|x86.Build.0 = Release|x86
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = ApacheLogViewer.csproj
 	EndGlobalSection
 EndGlobal

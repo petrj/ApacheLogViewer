@@ -1,9 +1,8 @@
 using System;
 using System.Diagnostics;
-using System.Collections.Generic;
 using System.IO;
-using Gtk;
 using ApacheLogViewer;
+using Gtk;
 
 public partial class MainWindow: Gtk.Window
 {	
@@ -25,7 +24,7 @@ public partial class MainWindow: Gtk.Window
 		btnShowPID.Active = _logReader.ShowPID;
 		btnShowWarnings.Active = _logReader.ShowPHPWarnings;
 		btnShowNotices.Active = _logReader.ShowPHPNotices;
-		btnShowStackStrace.Active = _logReader.ShowPHPStackTraces;
+		btnShowStackTrace.Active = _logReader.ShowPHPStackTraces;
 
 		textview.SizeAllocated += delegate {  GoToEnd(); };
 
@@ -114,7 +113,7 @@ public partial class MainWindow: Gtk.Window
 		_logReader.ShowIP = btnShowIP.Active;
 		_logReader.ShowPHPWarnings = btnShowWarnings.Active;
 		_logReader.ShowPHPNotices = btnShowNotices.Active;
-		_logReader.ShowPHPStackTraces = btnShowStackStrace.Active;
+		_logReader.ShowPHPStackTraces = btnShowStackTrace.Active;
 
 		OnRefreshAction1Activated(this,null);
 	}	
@@ -154,7 +153,7 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnBtnClearLogActivated (object sender, EventArgs e)
 	{
-		var output = ExecuteAndReturnOutput("gksudo","\"sh -c '/etc/init.d/apache2 stop;rm -f /var/log/apache2/error.log;/etc/init.d/apache2 start';\"");
+		var output = ExecuteAndReturnOutput("sh","\" -c '/etc/init.d/apache2 stop;rm -f /var/log/apache2/error.log;/etc/init.d/apache2 start';\"");
 		
 		if (output != null)
 		{
